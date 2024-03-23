@@ -1,20 +1,37 @@
 const express = require('express');
-const cors = require('cors');
-const mysql2 = require('mysql2/promise');
-const dotenv = require('dotenv');
-dotenv.config();
+const hbs = require('hbs');
+const wax = require('wax-on');
+require('dotenv').config();
+const { createConnection } = require('mysql2/promise');
 
 let app = express();
-app.use(express.json());
-app.use(cors());
+app.set('view engine', 'hbs');
+app.use(express.static('public'));
+app.use(express.urlencoded({extended:false}));
+
+wax.on(hbs.handlebars);
+wax.setLayoutPath('./views/layouts');
+
+let connection;
 
 async function main() {
-    app.get('/', function(req,res){
-        res.send("Hello world");
+    connection = await createConnection({
+        'host': process.env.DB_HOST,
+        'user': process.env.DB_USER,
+        'database': process.env.DB_NAME,
+        'password': process.env.DB_PASSWORD
     })
-}
-main()
 
-app.listen(3000, ()=>{
-    console.log("server has started")
-})
+    app.get('/lecturer', async (req,res) => {
+        let [lecturer] = await connection.execute(`
+        Select * from lecturer
+       `);
+       res.json(lecturer);       
+    });
+
+    app.listen(3000, ()=>{
+        console.log('Server is running')
+    });
+}
+
+main();
