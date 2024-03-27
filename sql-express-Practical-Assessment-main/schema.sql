@@ -5,7 +5,7 @@ USE module;
 CREATE TABLE lecturer (
     lecturer_id  INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
     full_name VARCHAR(50),
-    sex ENUM('MALE','FEMALE'),
+    gender ENUM('MALE','FEMALE'),
     email VARCHAR(50),
     phone_number VARCHAR(50),
     department VARCHAR(50),
