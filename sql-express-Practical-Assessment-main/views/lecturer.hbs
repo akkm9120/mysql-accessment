@@ -1,0 +1,74 @@
+{{#extends "base"}}
+
+{{#block "content"}}
+<table class="table table-success table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Full Name</th>
+            <th>Gender</th>
+            <th>email</th>
+            <th>Phone Number</th>
+            <th>Department</th>
+            <th>Specialization</th>
+            <th>Year of Exp</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each lecturer}}
+        <tr>
+            <td>{{this.lecturer_id}}</td>
+            <td>{{this.full_name}}</td>
+            <td>{{this.gender}}</td>
+            <td>{{this.email}}</td>
+            <td>{{this.phone_number}}</td>
+             <td>{{this.department}}</td>
+              <td>{{this.specialization}}</td>
+               <td>{{this.years_of_experience}}</td>
+            <td>
+                <a href="/delete-lecturer/{{this.lecturer_id}}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+            <td>
+                <a href="/update-lecturer/{{this.lecturer_id}}" class="btn btn-success btn-sm">Update</a>
+            </td>
+        </tr>
+        {{/each}}
+        <tr>
+            <td>*</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td colspan="3">#</td>
+        </tr>
+    
+        <tr style="position:sticky;">
+            <form  method="post">
+            <th colspan="4">Search by Specialization and year of Experience</th>
+            <td>Criteria &nbsp;=&gt; &gt;</td>
+            <td><input type="text" name="searchSpecialization" id="" placeholder="Specialization"></td>
+            <td><input type="text" name="searchYoexp" id="" placeholder="Year of Exp"></td>
+            <td colspan="3"><input type="submit" value="Search" class="btn btn-primary"></td>
+            </form>
+        </tr>
+        {{#each results}}
+       <tr>
+            <td>{{this.lecturer_id}}</td>
+            <td>{{this.full_name}}</td>
+            <td>{{this.gender}}</td>
+            <td>{{this.email}}</td>
+            <td>{{this.phone_number}}</td>
+             <td>{{this.department}}</td>
+              <td>{{this.specialization}}</td>
+               <td>{{this.years_of_experience}}</td>
+            <td>
+        {{/each}}
+    </tbody>
+</table>
+{{/block}}
+
+{{/extends}}

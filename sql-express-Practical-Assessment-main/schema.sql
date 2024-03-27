@@ -3,9 +3,9 @@ CREATE DATABASE module;
 USE module;
 
 CREATE TABLE lecturer (
-    lecturer_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    lecturer_id  INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
     full_name VARCHAR(50),
-    gender VARCHAR(50),
+    sex ENUM('MALE','FEMALE'),
     email VARCHAR(50),
     phone_number VARCHAR(50),
     department VARCHAR(50),
@@ -14,7 +14,7 @@ CREATE TABLE lecturer (
 );
 
 CREATE TABLE Majors (
-    major_id INT NOT NULL PRIMARY KEY,
+    major_id  INT UNSIGNED NOT NULL PRIMARY KEY,
     major VARCHAR(16),
     lecturer_id INT,
     start_date DATE,
@@ -22,7 +22,7 @@ CREATE TABLE Majors (
 );
 
 CREATE TABLE Students (
-    student_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    student_id  INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     first_name VARCHAR(50),
     last_name VARCHAR(50),
     dob DATE,

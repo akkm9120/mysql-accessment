@@ -1,0 +1,16 @@
+{{#extends "base"}}
+
+{{#block "content"}}
+<h1>Delete this Lecturer</h1>
+<form method="POST">
+    <div class="alert alert-danger">
+        Are you sure you want to delete this lecturer {{lecturer.full_name}} 
+    </div>
+    <div>
+        <input type="submit" value="Confirm" class="btn btn-danger mt-3"/>
+        <a href="/lecturer" class="btn btn-success mt-3">Cancel</a>
+    </div>
+</form>
+{{/block}}
+
+{{/extends}}
